@@ -1,2 +1,2 @@
 # golox
-This is an interpreter for the lox programming language from the book [Crafting Interpreters](craftinginterpreters.com) written in go.
+This is an interpreter for the lox programming language from the book [Crafting Interpreters](https://craftinginterpreters.com) written in go.

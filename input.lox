@@ -1,2 +1,9 @@
-// Your first Lox program!
-print "Hello, world!";
+fun addPair(a, b) {
+  return a + b;
+}
+
+fun identity(a) {
+  return a;
+}
+
+print identity(addPair)(1, 2); // Prints "3".

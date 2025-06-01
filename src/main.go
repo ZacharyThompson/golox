@@ -9,11 +9,11 @@ import (
 
 func run(input string) []error {
 	scanner := NewScanner(input)
-	tokens := scanner.scanTokens()
+	tokens, errs := scanner.scanTokens()
 	for i, t := range tokens {
 		fmt.Println(i, t)
 	}
-	return nil
+	return errs
 }
 
 func runFile(filePath string) error {
@@ -22,10 +22,11 @@ func runFile(filePath string) error {
 		return err
 	}
 	text := string(fileData)
+	fmt.Println(text)
 	errs := run(text)
-	if errs != nil {
-		for _, e := range errs {
-			fmt.Fprintln(os.Stderr, e)
+	if len(errs) > 0 {
+		for i, e := range errs {
+			fmt.Fprintln(os.Stderr, i, e)
 		}
 		os.Exit(1)
 	}
@@ -59,7 +60,7 @@ func main() {
 		fmt.Println("Usage: golox [script]")
 		os.Exit(64)
 	} else if len(os.Args) == 2 {
-		err := runFile(os.Args[0])
+		err := runFile(os.Args[1])
 		if err != nil {
 			log.Fatal(err)
 		}

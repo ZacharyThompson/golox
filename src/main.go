@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func run(input string) []error {
@@ -22,7 +23,11 @@ func runFile(filePath string) error {
 		return err
 	}
 	text := string(fileData)
-	fmt.Println(text)
+	i := 1
+	for l := range strings.Lines(text) {
+		fmt.Printf("%3d | %s", i, l)
+		i++
+	}
 	errs := run(text)
 	if len(errs) > 0 {
 		for i, e := range errs {

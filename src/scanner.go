@@ -105,6 +105,22 @@ func (s *Scanner) scanToken() error {
 			for s.peek() != '\n' && !s.isAtEnd() {
 				s.advance()
 			}
+		} else if s.match('*') {
+			for counter := 1; counter > 0 && !s.isAtEnd(); {
+				if s.match('\n') {
+					s.line++
+				} else if s.peek() == '*' && s.peekNext() == '/' {
+					counter--
+					s.advance()
+					s.advance()
+				} else if s.peek() == '/' && s.peekNext() == '*' {
+					counter++
+					s.advance()
+					s.advance()
+				} else {
+					s.advance()
+				}
+			}
 		} else {
 			s.addToken(SLASH)
 		}

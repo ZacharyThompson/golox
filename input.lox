@@ -6,4 +6,12 @@ fun identity(a) {
   return a;
 }
 
+/* nested
+multiline comments
+/* skldfjsk
+
+    */
+print hi
+*/
+
 print identity(addPair)(1, 2); // Prints "3".

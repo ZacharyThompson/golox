@@ -5,7 +5,7 @@ import "fmt"
 type TokenType int
 
 const (
-	EOF TokenType = iota
+	EOF TokenType = iota + 1
 	// Single-character tokens.
 	LEFT_PAREN
 	RIGHT_PAREN

@@ -1,7 +1,9 @@
-run:
-	go run src/main.go src/scanner.go src/token.go
-input:
-	go run src/main.go src/scanner.go src/token.go ./input.lox
+run: generate_ast
+	go run .
+input: generate_ast
+	go run . ./input.lox
 generate_ast:
-	mkdir -p ast
-	go run src/tool/generate_ast.go ./src
+	mkdir -p ./generated
+	go run ./tool/generate_ast.go ./generated
+clean:
+	rm -rf ./generated
